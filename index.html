@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Generate a <br><span>Random Password</span></h1>
+        <div class="display">
+            <input type="text" placeholder="Password" id="password-field">
+            <img id="copy" src="images/copy.png" alt="" onclick="selectPassword()">
+        </div>
+        <button><img src="images/generate.png" alt="">Generate Password</button>
+    </div>
+
+
+    <script>
+        let  passwordField=document.getElementById("password-field");
+        let  btn=document.getElementsByTagName("button")[0];
+        const img=document.getElementById("copy")
+
+        const upperCase="ABCDEFGHIJKLMNOPWRSTUVQXYZ";      
+        const lowerCase="abcdefghijklmnopwrstuvqxyz";
+        const number="0987654321";
+        const special="@#$^&*(){}[]<>";
+        let count=12;
+
+        btn.addEventListener('click',()=>
+        {
+            let password="";
+             while(count>password.length)
+            {
+                password+=upperCase[Math.floor(Math.random()*upperCase.length)];
+                password+=lowerCase[Math.floor(Math.random()*lowerCase.length)];
+                password+=number[Math.floor(Math.random()*number.length)];
+                password+=special[Math.floor(Math.random()*special.length)];
+            }
+            passwordField.value=password;
+            img.src="images/copy.png";
+        });
+        function selectPassword(){
+            passwordField.select();
+            document.execCommand("copy");           
+            img.src="images/right.png";
+        }
+        // console.log(Math.abs(-4))
+        // console.log(Math.abs(5))
+        // console.log(Math.round(4.4))
+        // console.log(Math.round(4.6));
+        // console.log(Math.ceil(4.2));
+        // console.log(Math.floor(4.2));
+        // console.log(Math.floor(Math.random()*10));
+    </script>
+</body>
+</html>
